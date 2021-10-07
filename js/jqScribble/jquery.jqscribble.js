@@ -92,7 +92,7 @@ function vibrate() {
         return;
     }
 
-    window.navigator.vibrate([200, 100, 200]);
+    window.navigator.vibrate([200]);
 }
 
 function BasicCanvasSave(imageData) { window.open(imageData, 'jqScribble Image'); }
