@@ -1,0 +1,46 @@
+html,
+body,
+#content {
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+    margin: 0px;
+}
+
+.container {
+    margin: 150px auto;
+    max-width: 640px;
+}
+
+.picker {
+    border-radius: 5px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    -webkit-transition: all linear .2s;
+    -moz-transition: all linear .2s;
+    -ms-transition: all linear .2s;
+    -o-transition: all linear .2s;
+    transition: all linear .2s;
+    border: thin solid #eee;
+}
+
+.picker:hover {
+    transform: scale(1.1);
+}
+
+#content {
+    position: relative;
+}
+
+#content .picker {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+canvas {
+    cursor: url(../images/pen.png) 2 2, pointer;
+}
