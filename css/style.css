@@ -9,15 +9,10 @@ body,
     margin: 0px;
 }
 
-.container {
-    margin: 150px auto;
-    max-width: 640px;
-}
-
 .picker {
     border-radius: 5px;
-    width: 10%;
-    height: 10%;
+    width: 72px;
+    height: 72px;
     cursor: pointer;
     -webkit-transition: all linear .2s;
     -moz-transition: all linear .2s;
@@ -37,8 +32,8 @@ body,
 
 #content .picker {
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 10px;
+    left: 10px;
 }
 
 canvas {
