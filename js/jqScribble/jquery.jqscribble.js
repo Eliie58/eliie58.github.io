@@ -35,6 +35,7 @@ function jqScribbleBrush() {
         this.active = true;
         this.context.beginPath();
         this.context.lineWidth = this.brushSize;
+        startVibrate();
     };
 
     //For custom brushes override this method and perform
@@ -44,6 +45,7 @@ function jqScribbleBrush() {
     //For custom brushes override this method to perform
     //any action to reset the brush once drawing is complete
     jqScribbleBrush.prototype.strokeEnd = function() {
+        endVibrate();
         this.active = false;
         if (this.drawn) {
             this.drawn = false;
@@ -61,7 +63,6 @@ function BasicBrush() {
         jqScribbleBrush.prototype.strokeBegin.call(this, x, y);
         this.prevX = x;
         this.prevY = y;
-        vibrate();
     };
 
     BasicBrush.prototype.strokeMove = function(x, y) {
@@ -79,8 +80,8 @@ function BasicBrush() {
     };
 }
 
-function vibrate() {
-    if (!window) {
+function startVibrate() {
+    /*if (!window) {
         return;
     }
 
@@ -90,9 +91,25 @@ function vibrate() {
 
     if (!window.navigator.vibrate) {
         return;
+    }*/
+
+    // enable vibration support
+    navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+
+    if (navigator.vibrate) {
+        //Max 1 min
+        window.navigator.vibrate(1000 * 60);
     }
 
-    window.navigator.vibrate([200]);
+}
+
+function endVibrate() {
+    navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+
+    if (navigator.vibrate) {
+        //Max 1 min
+        window.navigator.vibrate(0);
+    }
 }
 
 function BasicCanvasSave(imageData) { window.open(imageData, 'jqScribble Image'); }

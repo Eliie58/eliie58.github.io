@@ -9,8 +9,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
     <title>Haptic Experience</title>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://unpkg.com/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/colorPick.css">
     <link rel="stylesheet" href="css/colorPick.dark.theme.css">
@@ -25,6 +27,10 @@
 
 <body>
 
+    <div id="overlay">
+        <button id="overlay-button" type="button" class="btn btn-success" onclick="off()">Start Drawing</button>
+    </div>
+
     <div id="content">
         <div class="picker"></div>
         <div id="slider_2" style="width:400px; max-width:100%; margin:auto"></div>
@@ -33,6 +39,10 @@
 
 
     <script>
+        function off() {
+            $('#overlay').attr('style', 'display:none');
+        }
+
         var onMove = function(e, percentage) {
             $("#scribblePad").data("jqScribble").update({
                 brushSize: 1 + (percentage / 3)
