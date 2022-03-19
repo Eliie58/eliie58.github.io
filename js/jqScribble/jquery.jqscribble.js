@@ -65,6 +65,7 @@ function BasicBrush() {
         jqScribbleBrush.prototype.strokeBegin.call(this, x, y);
         this.prevX = x;
         this.prevY = y;
+        this.disabled = false;
     };
 
     BasicBrush.prototype.strokeMove = function(x, y) {
@@ -76,8 +77,10 @@ function BasicBrush() {
             endVibrate();
             this.prevX = x;
             this.prevY = y;
+            this.disabled = true;
             return;
-        } else {
+        } else if (this.disabled) {
+            this.disabled = false;
             startVibrate();
         }
 

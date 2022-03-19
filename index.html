@@ -76,66 +76,6 @@
                 onDown: onMove
             });
 
-            var canvasElement = document.querySelector("#scribblePad");
-            var context = canvasElement.getContext("2d");
-
-            // the triangle
-            context.beginPath();
-            context.moveTo(100, 100);
-            context.lineTo(100, 300);
-            context.lineTo(300, 300);
-            context.closePath();
-
-            // the outline
-            context.lineWidth = 10;
-            context.strokeStyle = '#666666';
-            context.stroke();
-
-            // the fill color
-            context.fillStyle = "#FFCC00";
-            context.fill();
-
-            // $('#scribblePad').mousemove(function(e) {
-            //     var pos = findPos(this);
-            //     var x = e.pageX - pos.x;
-            //     var y = e.pageY - pos.y;
-            //     var coord = "x=" + x + ", y=" + y;
-            //     var c = this.getContext('2d');
-            //     var p = c.getImageData(x, y, 1, 1).data;
-            //     var hex = p[0] + "_" + p[1] + "_" + p[2];
-            //     $('#status').html(coord + "  " + hex);
-            // });
-
-            // function findPos(obj) {
-            //     var curleft = 0,
-            //         curtop = 0;
-            //     if (obj.offsetParent) {
-            //         do {
-            //             curleft += obj.offsetLeft;
-            //             curtop += obj.offsetTop;
-            //         } while (obj = obj.offsetParent);
-            //         return {
-            //             x: curleft,
-            //             y: curtop
-            //         };
-            //     }
-            //     return undefined;
-            // }
-
-            // function rgbToHex(r, g, b) {
-            //     if (r > 255 || g > 255 || b > 255)
-            //         throw "Invalid color component";
-            //     return ((r << 16) | (g << 8) | b).toString(16);
-            // }
-
-            // function randomInt(max) {
-            //     return Math.floor(Math.random() * max);
-            // }
-
-            // function randomColor() {
-            //     return `rgb(${randomInt(256)}, ${randomInt(256)}, ${randomInt(256)})`
-            // }
-
         });
     </script>
 
