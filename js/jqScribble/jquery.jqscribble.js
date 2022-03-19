@@ -40,7 +40,9 @@ function jqScribbleBrush() {
 
     //For custom brushes override this method and perform
     //any action that the brush does while drawing.
-    jqScribbleBrush.prototype.strokeMove = function(x, y) { this.drawn = this.active; };
+    jqScribbleBrush.prototype.strokeMove = function(x, y) {
+        this.drawn = this.active;
+    };
 
     //For custom brushes override this method to perform
     //any action to reset the brush once drawing is complete
@@ -66,6 +68,19 @@ function BasicBrush() {
     };
 
     BasicBrush.prototype.strokeMove = function(x, y) {
+
+        p = this.context.getImageData(x, y, 1, 1).data;
+        console.log(p[0], p[1], p[2]);
+
+        if (p[0] === 255 && p[1] === 255 && p[2] === 255) {
+            endVibrate();
+            this.prevX = x;
+            this.prevY = y;
+            return;
+        } else {
+            startVibrate();
+        }
+
         //For custom brushes make sure to call the parent brush methods
         jqScribbleBrush.prototype.strokeMove.call(this, x, y);
 
@@ -112,7 +127,9 @@ function endVibrate() {
     }
 }
 
-function BasicCanvasSave(imageData) { window.open(imageData, 'jqScribble Image'); }
+function BasicCanvasSave(imageData) {
+    window.open(imageData, 'jqScribble Image');
+}
 
 (function($) {
     //These are the default settings if none are specified.
@@ -136,7 +153,8 @@ function BasicCanvasSave(imageData) { window.open(imageData, 'jqScribble Image')
     function addImage(context) {
         var img = new Image();
         img.src = settings.backgroundImage;
-        img.crossOrigin = "Anonymous";
+        img.setAttribute('crossOrigin', '');
+        //img.crossOrigin = "Anonymous";
 
         img.onload = function() {
             if (settings.backgroundImageHeight && settings.backgroundImageWidth) {
@@ -222,8 +240,12 @@ function BasicCanvasSave(imageData) { window.open(imageData, 'jqScribble Image')
                     var o = $elm.offset();
                     if (self.brush.active) self.brush.strokeMove(e.pageX - o.left, e.pageY - o.top);
                 },
-                mouseup: function(e) { self.blank = !self.brush.strokeEnd() && self.blank; },
-                mouseout: function(e) { self.blank = !self.brush.strokeEnd() && self.blank; }
+                mouseup: function(e) {
+                    self.blank = !self.brush.strokeEnd() && self.blank;
+                },
+                mouseout: function(e) {
+                    self.blank = !self.brush.strokeEnd() && self.blank;
+                }
             });
         }
     };
@@ -297,8 +319,10 @@ function BasicCanvasSave(imageData) { window.open(imageData, 'jqScribble Image')
         });
 
         function fileOnload(e) {
-            var $img = $('<img>', { src: e.target.result });
-            var canvas = $('#test')[0];
+            var $img = $('<img>', {
+                src: e.target.result
+            });
+            var canvas = $('#scribblePad')[0];
             var context = canvas.getContext('2d');
 
             $img.load(function() {
