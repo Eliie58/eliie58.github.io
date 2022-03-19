@@ -71,13 +71,14 @@ function BasicBrush() {
     BasicBrush.prototype.strokeMove = function(x, y) {
 
         p = this.context.getImageData(x, y, 1, 1).data;
-        console.log(p[0], p[1], p[2]);
 
         if (p[0] === 255 && p[1] === 255 && p[2] === 255) {
-            endVibrate();
             this.prevX = x;
             this.prevY = y;
-            this.disabled = true;
+            if (!this.disabled) {
+                this.disabled = true;
+                endVibrate();
+            }
             return;
         } else if (this.disabled) {
             this.disabled = false;
