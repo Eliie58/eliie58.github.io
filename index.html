@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <div id="content">
+    <div id="content" style="display: none;">
         <div class="picker"></div>
         <canvas id="scribblePad"></canvas>
     </div>
@@ -55,7 +55,8 @@
         });
 
         function off() {
-            $('#overlay').attr('style', 'display:none');
+            $('#overlay').hide();
+            $('#content').show();
         }
 
         $(document).ready(function() {
