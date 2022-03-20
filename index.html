@@ -28,23 +28,14 @@
 
 <body>
 
-    <!-- <div >
-        <button id="overlay-button" type="button" class="btn btn-success" onclick="off()">Start Drawing</button>
-    </div> -->
-
     <div class="container" id="overlay">
         <div class="row">
-
             <div class="gallery">
-
                 <figure>
-                    <img src="./images/a.png" alt="" />
-                    <figcaption>Daytona Beach <small>United States</small></figcaption>
+                    <img src="./images/a.png">
                 </figure>
-
                 <figure>
-                    <img src="./images/b.png" alt="" />
-                    <figcaption>Териберка, gorod Severomorsk <small>Russia</small></figcaption>
+                    <img src="./images/b.png">
                 </figure>
             </div>
         </div>
@@ -52,15 +43,12 @@
 
     <div id="content">
         <div class="picker"></div>
-        <div id="slider_2" style="width:400px; max-width:100%; margin:auto"></div>
-        <span id="status"></span>
-        <canvas id="scribblePad" style="background: url('./images/a.png')"></canvas>
+        <canvas id="scribblePad"></canvas>
     </div>
 
     <script>
         $('figure').click(function() {
-            //popup.open($(this));
-            $("#scribblePad").jqScribble({
+            $("#scribblePad").data('jqScribble').update({
                 backgroundImage: $(this).find('img')[0].src
             });
             off();
@@ -70,14 +58,10 @@
             $('#overlay').attr('style', 'display:none');
         }
 
-        var onMove = function(e, percentage) {
-            $("#scribblePad").data("jqScribble").update({
-                brushSize: 1 + (percentage / 3)
-            });
-        }
-
         $(document).ready(function() {
-            $("#scribblePad").jqScribble();
+            $("#scribblePad").jqScribble({
+                brushSize: 40
+            });
 
             $(".picker").colorPick({
                 'initialColor': '#8e44ad',
@@ -91,13 +75,6 @@
                         brushColor: this.color
                     });
                 }
-            });
-
-
-            new RangeSlider($("#slider_2"), {
-                percentage: 3,
-                onMove: onMove,
-                onDown: onMove
             });
 
         });
