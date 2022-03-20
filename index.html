@@ -28,14 +28,67 @@
 
 <body>
 
-    <div class="container" id="overlay">
+    <main role="main">
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4" onclick="show('lower')">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" style="height: 225px; width: 100%; display: block;" src="./images/lower/a.png" data-holder-rendered="true">
+                            <div class="card-body">
+                                <p class="card-text">Lowercase Letters</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" onclick="show('upper')">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" style="height: 225px; width: 100%; display: block;" src="./images/upper/A.png" data-holder-rendered="true">
+                            <div class="card-body">
+                                <p class="card-text">Uppercase Letters</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" onclick="show('numbers')">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" style="height: 225px; width: 100%; display: block;" src="./images/numbers/1.png" data-holder-rendered="true">
+                            <div class="card-body">
+                                <p class="card-text">Numbers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="container overlay" id="lower" style="display: none;">
         <div class="row">
             <div class="gallery">
                 <figure>
-                    <img src="./images/a.png">
+                    <img src="./images/lower/a.png">
                 </figure>
                 <figure>
-                    <img src="./images/b.png">
+                    <img src="./images/lower/b.png">
+                </figure>
+            </div>
+        </div>
+    </div>
+
+    <div class="container overlay" id="upper" style="display: none;">
+        <div class="row">
+            <div class="gallery">
+                <figure>
+                    <img src="./images/upper/A.png">
+                </figure>
+            </div>
+        </div>
+    </div>
+
+    <div class="container overlay" id="numbers" style="display: none;">
+        <div class="row">
+            <div class="gallery">
+                <figure>
+                    <img src="./images/numbers/1.png">
                 </figure>
             </div>
         </div>
@@ -49,14 +102,21 @@
     <script>
         $('figure').click(function() {
             $("#scribblePad").data('jqScribble').update({
-                backgroundImage: $(this).find('img')[0].src
+                backgroundImage: $(this).find('img')[0].src,
+                width: $(window).width(),
+                height: $(window).height()
             });
             off();
         });
 
         function off() {
-            $('#overlay').hide();
+            $('.overlay').hide();
             $('#content').show();
+        }
+
+        function show(id) {
+            $('main').hide();
+            $('#' + id).show();
         }
 
         $(document).ready(function() {
