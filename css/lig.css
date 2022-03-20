@@ -13,8 +13,8 @@ body {
 
 img {
     display: block;
-    height: 400px;
-    width: 600px;
+    /* height: 400px;
+    width: 600px; */
     object-fit: cover;
 }
 
