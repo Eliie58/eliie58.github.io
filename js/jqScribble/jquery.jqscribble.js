@@ -72,7 +72,7 @@ function BasicBrush() {
 
         p = this.context.getImageData(x, y, 1, 1).data;
 
-        if (p[0] === 255 && p[1] === 255 && p[2] === 255) {
+        if (p[0] >= 2 && p[1] >= 2 && p[2] >= 2) {
             this.prevX = x;
             this.prevY = y;
             if (!this.disabled) {
@@ -161,21 +161,15 @@ function BasicCanvasSave(imageData) {
         //img.crossOrigin = "Anonymous";
 
         img.onload = function() {
-            if (settings.backgroundImageHeight && settings.backgroundImageWidth) {
-                context.drawImage(
-                    img,
-                    settings.backgroundImageX,
-                    settings.backgroundImageY,
-                    settings.backgroundImageWidth,
-                    settings.backgroundImageHeight
-                );
-            } else {
-                context.drawImage(
-                    img,
-                    settings.backgroundImageX,
-                    settings.backgroundImageY
-                );
-            }
+
+            const canvas = context.canvas;
+            const hRatio = canvas.width / img.width;
+            const vRatio = canvas.height / img.height;
+            const ratio = Math.min(hRatio, vRatio);
+            const centerShift_x = (canvas.width - img.width * ratio) / 2;
+            const centerShift_y = (canvas.height - img.height * ratio) / 2;
+            context.drawImage(img, 0, 0, img.width, img.height,
+                centerShift_x, centerShift_y, img.width * ratio, img.height * ratio);
         }
     }
 

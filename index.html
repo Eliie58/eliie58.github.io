@@ -32,27 +32,35 @@
         <div class="album py-5 bg-light">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4" onclick="show('lower')">
-                        <div class="card mb-4 box-shadow">
-                            <img class="card-img-top" style="height: 225px; width: 100%; display: block;" src="./images/lower/a.png" data-holder-rendered="true">
+                    <div class="col-md-6" onclick="show('lower')">
+                        <div class="card mb-6 box-shadow">
+                            <img class="card-img-top" style="height: 225px; width: 100%; display: block;" src="./images/lower/Carre1.png" data-holder-rendered="true">
                             <div class="card-body">
-                                <p class="card-text">Lowercase Letters</p>
+                                <p class="card-text">المربّع</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4" onclick="show('upper')">
-                        <div class="card mb-4 box-shadow">
-                            <img class="card-img-top" style="height: 225px; width: 100%; display: block;" src="./images/upper/A.png" data-holder-rendered="true">
+                    <div class="col-md-6" onclick="show('upper')">
+                        <div class="card mb-6 box-shadow">
+                            <img class="card-img-top" style="height: 225px; width: 100%; display: block;" src="./images/upper/Letter1.png" data-holder-rendered="true">
                             <div class="card-body">
-                                <p class="card-text">Uppercase Letters</p>
+                                <p class="card-text">أصوات المدّ الطويلة</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4" onclick="show('numbers')">
-                        <div class="card mb-4 box-shadow">
+                    <div class="col-md-6" onclick="show('numbers')">
+                        <div class="card mb-6 box-shadow">
                             <img class="card-img-top" style="height: 225px; width: 100%; display: block;" src="./images/numbers/1.png" data-holder-rendered="true">
                             <div class="card-body">
-                                <p class="card-text">Numbers</p>
+                                <p class="card-text">الأرقام</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" onclick="show('blackboard')">
+                        <div class="card mb-6 box-shadow">
+                            <img class="card-img-top" style="height: 225px; width: 100%; display: block;" src="./images/black.png" data-holder-rendered="true">
+                            <div class="card-body">
+                                <p class="card-text">Black Board</p>
                             </div>
                         </div>
                     </div>
@@ -61,34 +69,88 @@
         </div>
     </main>
 
-    <div class="container overlay" id="lower" style="display: none;width: 100%;max-width: inherit;">
+    <div class="container overlay" id="lower" style="display: none;width: 100%;max-width: inherit; overflow-y: scroll;">
         <div class="row">
             <div class="gallery">
                 <figure>
-                    <img src="./images/lower/a.png">
+                    <img src="./images/lower/Carre1.png">
                 </figure>
                 <figure>
-                    <img src="./images/lower/b.png">
+                    <img src="./images/lower/Carre2.png">
+                </figure>
+                <figure>
+                    <img src="./images/lower/Carre3.png">
+                </figure>
+                <figure>
+                    <img src="./images/lower/Carre4.png">
+                </figure>
+                <figure>
+                    <img src="./images/lower/Carre5.png">
+                </figure>
+                <figure>
+                    <img src="./images/lower/Carre6.png">
+                </figure>
+                <figure>
+                    <img src="./images/lower/Carre7.png">
+                </figure>
+                <figure>
+                    <img src="./images/lower/Carre8.png">
+                </figure>
+                <figure>
+                    <img src="./images/lower/Carre9.png">
                 </figure>
             </div>
         </div>
     </div>
 
-    <div class="container overlay" id="upper" style="display: none;width: 100%;max-width: inherit;">
+    <div class="container overlay" id="upper" style="display: none;width: 100%;max-width: inherit; overflow-y: scroll;">
         <div class="row">
             <div class="gallery">
                 <figure>
-                    <img src="./images/upper/A.png">
+                    <img src="./images/upper/Letter1.png">
+                </figure>
+                <figure>
+                    <img src="./images/upper/Letter2.png">
+                </figure>
+                <figure>
+                    <img src="./images/upper/Letter3.png">
                 </figure>
             </div>
         </div>
     </div>
 
-    <div class="container overlay" id="numbers" style="display: none;width: 100%;max-width: inherit;">
+    <div class="container overlay" id="numbers" style="display: none;width: 100%;max-width: inherit; overflow-y: scroll;">
         <div class="row">
             <div class="gallery">
                 <figure>
                     <img src="./images/numbers/1.png">
+                </figure>
+                <figure>
+                    <img src="./images/numbers/2.png">
+                </figure>
+                <figure>
+                    <img src="./images/numbers/3.png">
+                </figure>
+                <figure>
+                    <img src="./images/numbers/4.png">
+                </figure>
+                <figure>
+                    <img src="./images/numbers/5.png">
+                </figure>
+                <figure>
+                    <img src="./images/numbers/6.png">
+                </figure>
+                <figure>
+                    <img src="./images/numbers/7.png">
+                </figure>
+                <figure>
+                    <img src="./images/numbers/8.png">
+                </figure>
+                <figure>
+                    <img src="./images/numbers/9.png">
+                </figure>
+                <figure>
+                    <img src="./images/numbers/10.png">
                 </figure>
             </div>
         </div>
@@ -118,11 +180,24 @@
         function show(id) {
             $('main').hide();
             $('#' + id).show();
+
+            if (id === "blackboard") {
+                showBlackboard();
+            }
+        }
+
+        function showBlackboard() {
+            $("#scribblePad").data('jqScribble').update({
+                backgroundColor: "#000000",
+                width: $(window).width(),
+                height: $(window).height()
+            });
+            off();
         }
 
         $(document).ready(function() {
             $("#scribblePad").jqScribble({
-                brushSize: 40
+                brushSize: 60
             });
 
             $(".picker").colorPick({
